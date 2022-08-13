@@ -1,0 +1,140 @@
+-- SQL Project 
+create database MusicPulse;
+show databases;
+use musicpulse;
+-- drop database musicpulse;
+
+create table instruments(
+Instrument_Name varchar(25) primary key
+);
+
+create table Teachers(
+Teachers_ID int primary key,
+Teacher_name varchar(25) unique,
+Instrument_name varchar(50),
+Teacher_loc varchar(40) default 'Powai',
+Pay_per_Session int,
+foreign key (Instrument_name) references instruments(Instrument_name)
+);
+desc teachers;
+
+create table Students(
+Student_ID int primary key,
+Student_Name varchar(30),
+gender char(1),
+Instrument_name varchar(25),
+Teacher varchar(30),
+Fees float,
+DateofEnrolment date,
+Student_loc varchar(30) default 'powai',
+foreign key (Instrument_name) references instruments(Instrument_name)
+);
+desc students;
+-- alter table students modify student_id int auto_increment;
+
+create table Trinity_2022(
+Student_ID int,
+teachers_ID int,
+Instrument_name varchar(25),
+Grade int,
+foreign key (Instrument_name) references instruments(Instrument_name),
+foreign key (Student_ID) references Students(Student_ID),
+foreign key (Teachers_ID) references Teachers(Teachers_ID),
+School Varchar(40) default 'MusicPulse',
+Result varchar(20) null
+);
+desc trinity_2022;
+-- drop table Trinity_2022;
+
+insert into instruments values('Guitar');
+insert into instruments values('Piano');
+insert into instruments values('Keyboard');
+insert into instruments values('Western Vocals');
+insert into instruments values('Classical Vocals');
+insert into instruments values('Drums');
+Desc instruments;
+select * from instruments;
+
+insert into Teachers values(1,'Alisha','Western Vocals','Kandivali',500);
+insert into Teachers values(2,'Chirag','Western Vocals','Dombivali',850);
+insert into Teachers values(3,'Monisha','Classical Vocals','Bandra',500);
+insert into Teachers values(4,'Desikan','Guitar','Vasai',550);
+insert into Teachers values(5,'Profeus','Guitar','JVLR',550);
+insert into Teachers values(6,'Aamir','Drums','Vileparle',600);
+insert into Teachers values(7,'Kemmy','Keyboard','Irla',550);
+insert into Teachers values(8,'Roshni','Piano','Bandra',850);
+insert into Teachers values(9,'Ashish','Keyboard','Malad',650);
+insert into Teachers values(10,'Suyash','Guitar','Dadar',500);
+desc Teachers;
+select * from teachers;
+
+insert into students(Student_Name,Gender,Instrument_name,Teacher,Fees,DateofEnrolment) 
+values('Shanaya',"F",'Guitar','Profeus',1800,"2022-12-24");
+select * from students;
+insert into students(Student_Name,Gender,Instrument_name,Teacher,Fees,DateofEnrolment,student_loc) 
+values('Raksha','F','Guitar','Profeus',2200,'2020-10-22','Mumbai');
+insert into students(Student_ID,Student_Name,Gender,Instrument_name,Teacher,Fees,DateofEnrolment)
+values(20,'Yati','F','Guitar','Profeus',2000,'2021-08-15');
+insert into students(Student_Name,Gender,Instrument_name,Teacher,Fees,DateofEnrolment)
+values('Hitarth','M','Guitar','Desikan',2000,'2021-08-15');
+insert into students(Student_ID,Student_Name,Gender,Instrument_name,Teacher,Fees,DateofEnrolment)
+values(3,'Hiteesha','F','Classical Vocals','Monisha',2000,'2021-08-15');
+insert into students(Student_Name,Gender,Instrument_name,Teacher,Fees,DateofEnrolment) 
+values('Aarav','M','Guitar','Desikan',1800,'2021-09-24');
+insert into students(Student_ID,Student_Name,Gender,Instrument_name,Teacher,Fees,DateofEnrolment) 
+values(4,'Anurup','M','Western Vocals','Alisha',1800,'2022-01-16');
+insert into students(Student_ID,Student_Name,Gender,Instrument_name,Teacher,Fees,DateofEnrolment) 
+values(5,'Kyra','F','Classical Vocals','Monisha',1800,'2022-01-16');
+insert into students(Student_ID,Student_Name,Gender,Instrument_name,Teacher,Fees,DateofEnrolment)
+values(6,'Ira','F','Classical Vocals','Monisha',1800,'2022-02-24');
+insert into students(Student_ID,Student_Name,Gender,Instrument_name,Teacher,Fees,DateofEnrolment)
+values(7,'Deetya','F','Western Vocals','Chirag',2000,'2021-06-22');
+insert into students(Student_ID,Student_Name,Gender,Instrument_name,Teacher,Fees,DateofEnrolment) 
+values(8,'Karan B','M','Western Vocals','Chirag',2000,'2022-02-28');
+insert into students(Student_ID,Student_Name,Gender,Instrument_name,Teacher,Fees,DateofEnrolment) 
+values(9,'Divyanshi','F','Guitar','Suyas',1800,'2022-03-12');
+insert into students(Student_ID,Student_Name,Gender,Instrument_name,Teacher,Fees,DateofEnrolment) 
+values(10,'Vivaan G','M','Guitar','Suyash',1800,'2022-02-28');
+insert into students(Student_ID,Student_Name,Gender,Instrument_name,Teacher,Fees,DateofEnrolment) 
+values(11,'Shaurya','M','Guitar','Suyash',1800,'2021-12-22');
+insert into students(Student_ID,Student_Name,Gender,Instrument_name,Teacher,Fees,DateofEnrolment) 
+values(12,'Arjun','M','Keyboard','Kemmy',1800,'2020-11-22');
+insert into students(Student_ID,Student_Name,Gender,Instrument_name,Teacher,Fees,DateofEnrolment) 
+values(13,'Fareez','F','Keyboard','Kemmy',1800,'2021-10-23');
+insert into students(Student_ID,Student_Name,Gender,Instrument_name,Teacher,Fees,DateofEnrolment) 
+values(14,'Ananya','F','Keyboard','Kemmy',1800,'2021-12-18');
+insert into students(Student_ID,Student_Name,Gender,Instrument_name,Teacher,Fees,DateofEnrolment) 
+values(15,'Kenisha','F','Keyboard','Ashish',1800,'2021-10-22');
+insert into students(Student_ID,Student_Name,Gender,Instrument_name,Teacher,Fees,DateofEnrolment) 
+values(16,'Aadit','M','Keyboard','Ashish',1800,'2021-09-18');
+insert into students(Student_ID,Student_Name,Gender,Instrument_name,Teacher,Fees,DateofEnrolment) 
+values(17,'Aadit','M','Guitar','Desikan',1800,'2021-09-18');
+insert into students(Student_ID,Student_Name,Gender,Instrument_name,Teacher,Fees,DateofEnrolment) 
+values(18,'Kenisha','F','Western Vocals','Alisha',1800,'2021-10-22');
+insert into students(Student_ID,Student_Name,Gender,Instrument_name,Teacher,Fees,DateofEnrolment) 
+values(19,'Ananya','F','Guitar','Desikan',1800,'2021-12-18');
+
+select * from Trinity_2022;
+insert into Trinity_2022(Student_ID,teachers_id,Instrument_name,Grade) 
+values(2,5,'Guitar',2);
+insert into Trinity_2022(Student_ID,teachers_id,Instrument_name,Grade) 
+values(5,3,'Classical Vocals',2);
+insert into Trinity_2022(Student_ID,teachers_id,Instrument_name,Grade) 
+values(15,9,'Keyboard',3);
+insert into Trinity_2022(Student_ID,teachers_id,Instrument_name,Grade) 
+values(7,2,'Western Vocals',1);
+
+create table Fees_Update(
+Student_ID int,
+Fees_Paid int,
+Fees_Pending int,
+Foreign key(Student_ID) references students(Student_ID)
+);
+insert into Fees_update values(1,4000,5000);
+insert into Fees_update values(2,10000,200);
+insert into Fees_update values(3,5000,6000);
+insert into Fees_update values(4,6000,4000);
+insert into Fees_update values(5,1200,9800);
+insert into Fees_update values(6,5800,2600);
+insert into Fees_update values(7,16000,null);
+insert into Fees_update values(8,6500,2600);
